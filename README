@@ -2,6 +2,15 @@
 
 Let's imagine we have a VM running on http://13.39.22.103/. I want to have a web page running on Apache on that server.
 
+Create a playbook which
+
+- Gathers facts and runs privileged
+- Installs httpd with the yum module
+- Enables and starts the httpd service with the systemd module
+- Configure the ServerAdmin email address with the lineinfile module and reload the httpd service with a handler. Add something like ServerAdmin tspeetjens@paradigm.brussels in /etc/httpd/conf/httpd.conf.
+- Create a custom home page (/var/www/html/index.html) with the template module, and a Jinja2 template file
+- Give all tasks a suitable name
+
 ## installing ansible
 
 On Ubuntu:
