@@ -23,7 +23,7 @@ Here is a list of Ansible modules: https://docs.ansible.com/ansible/2.9/modules/
 
 This will execute the playbook on our inventory:
 
-  ansible-playbook -i inventory exercise.yml
+  ansible-playbook -i inventory playbook.yml
 
 ## Testing the web page
 
