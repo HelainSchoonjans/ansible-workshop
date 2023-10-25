@@ -1,0 +1,30 @@
+# using ansible to configure a web server
+
+Let's imagine we have a VM running on http://13.39.22.103/. I want to have a web page running on Apache on that server.
+
+## installing ansible
+
+On Ubuntu:
+
+  sudo apt update
+  sudo apt install software-properties-common
+  sudo add-apt-repository --yes --update ppa:ansible/ansible
+  sudo apt install ansible
+
+Test the installation with 
+
+  ansible --version
+
+## Find ansible modules
+
+Here is a list of Ansible modules: https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
+
+## Run the ansible playbook
+
+This will execute the playbook on our inventory:
+
+  ansible-playbook -i inventory exercise.yml
+
+## Testing the web page
+
+Go on http://13.39.22.103/

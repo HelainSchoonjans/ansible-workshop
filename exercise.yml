@@ -1,0 +1,33 @@
+---
+- hosts: all
+  tasks:
+  - name: Gather facts
+    debug:
+      var: ansible_facts
+  - name: install the latest version of Apache
+    become: true
+    yum:
+      name: httpd
+      state: latest
+  - name: Make sure a service is running
+    become: true
+    systemd:
+      state: started
+      name: httpd
+  - name: Update ServerAdmin in httpd.conf
+    become: true
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^ServerAdmin'
+      line: 'ServerAdmin hschoonjans@paradigm.brussels'
+    notify: Reload httpd
+  - name: Render custom home page template
+    become: true
+    template:
+      src: ./custom_homepage.j2
+      dest: /var/www/html/index.html
+  handlers:
+    - name: Reload httpd
+      service:
+        name: httpd
+        state: reloaded
